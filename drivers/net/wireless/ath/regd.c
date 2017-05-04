@@ -23,6 +23,9 @@
 #include "regd.h"
 #include "regd_common.h"
 
+// #jychoi#
+#define ATH_USER_REGD 1
+
 static int __ath_regd_init(struct ath_regulatory *reg);
 
 /*
@@ -402,6 +405,11 @@ static void ath_reg_apply_radar_flags(struct wiphy *wiphy)
 	struct ieee80211_channel *ch;
 	unsigned int i;
 
+	// #jychoi#
+#ifdef ATH_USER_REGD
+	return;
+#endif
+
 	if (!wiphy->bands[IEEE80211_BAND_5GHZ])
 		return;
 
@@ -631,6 +639,11 @@ ath_regd_init_wiphy(struct ath_regulatory *reg,
 					 struct regulatory_request *request))
 {
 	const struct ieee80211_regdomain *regd;
+	
+	// #jychoi#
+#ifdef ATH_USER_REGD
+	return ;
+#endif
 
 	wiphy->reg_notifier = reg_notifier;
 	wiphy->regulatory_flags |= REGULATORY_STRICT_REG |
