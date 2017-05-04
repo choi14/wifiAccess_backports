@@ -409,7 +409,6 @@ static void ath_reg_apply_radar_flags(struct wiphy *wiphy)
 #ifdef ATH_USER_REGD
 	return;
 #endif
-
 	if (!wiphy->bands[IEEE80211_BAND_5GHZ])
 		return;
 
